@@ -1,0 +1,483 @@
+openapi: 3.0.0
+info:
+  title: Simplified AI/ML Learning Platform API
+  description: Backend API Specification for Authentication, Courses, Nested Content, Blogs, and Admin Panel.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5000/api/v1
+    description: Local development server
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum: [learner, admin, instructor]
+
+    RegisterInput:
+      type: object
+      required: [name, email, password]
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+
+    LoginInput:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+
+    LoginResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        user:
+          $ref: "#/components/schemas/User"
+
+    Course:
+      type: object
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+        level:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        authors:
+          type: array
+          items:
+            type: string
+        thumbnail:
+          type: string
+        published:
+          type: boolean
+        modules:
+          type: array
+          items:
+            $ref: "#/components/schemas/Module"
+
+    Module:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        order:
+          type: number
+        topics:
+          type: array
+          items:
+            $ref: "#/components/schemas/Topic"
+
+    Topic:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        order:
+          type: number
+        subtopics:
+          type: array
+          items:
+            $ref: "#/components/schemas/Subtopic"
+
+    Subtopic:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        content:
+          $ref: "#/components/schemas/ContentItem"
+
+    ContentItem:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [text, image, video]
+        value:
+          type: string
+
+    Blog:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        slug:
+          type: string
+        author:
+          type: string
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/ContentItem"
+        likes:
+          type: array
+          items:
+            type: string
+        comments:
+          type: array
+          items:
+            $ref: "#/components/schemas/BlogComment"
+        published:
+          type: boolean
+
+    BlogComment:
+      type: object
+      properties:
+        _id:
+          type: string
+        user:
+          type: string
+        text:
+          type: string
+        created_at:
+          type: string
+
+paths:
+
+  ###########################################
+  ## AUTH
+  ###########################################
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterInput"
+      responses:
+        "201":
+          description: User registered
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Login user and get accessToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginInput"
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      summary: Refresh access token
+      responses:
+        "200":
+          description: New access token returned
+
+  /auth/logout:
+    post:
+      tags: [Auth]
+      summary: Logout user
+      responses:
+        "200":
+          description: Logged out
+
+
+  ###########################################
+  ## COURSES CRUD
+  ###########################################
+  /courses:
+    get:
+      tags: [Courses]
+      summary: Get all courses
+      responses:
+        "200":
+          description: List of courses
+    post:
+      tags: [Courses]
+      security:
+        - bearerAuth: []
+      summary: Create a new course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Course"
+      responses:
+        "201":
+          description: Course created
+
+  /courses/{id}:
+    get:
+      tags: [Courses]
+      summary: Get course by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+    put:
+      tags: [Courses]
+      security:
+        - bearerAuth: []
+      summary: Update a course
+      parameters:
+        - name: id
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Course updated
+    delete:
+      tags: [Courses]
+      security:
+        - bearerAuth: []
+      summary: Delete a course
+      parameters:
+        - name: id
+          in: path
+          required: true
+
+
+  ###########################################
+  ## MODULE / TOPIC / SUBTOPIC CONTENT
+  ###########################################
+
+  /courses/{courseId}/modules:
+    post:
+      tags: [Modules]
+      security:
+        - bearerAuth: []
+      summary: Add module to course
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+
+  /courses/{courseId}/modules/{moduleId}:
+    put:
+      tags: [Modules]
+      security:
+        - bearerAuth: []
+      summary: Update module
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+        - name: moduleId
+          in: path
+          required: true
+    delete:
+      tags: [Modules]
+      security:
+        - bearerAuth: []
+      summary: Delete module
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+        - name: moduleId
+          in: path
+          required: true
+
+  /courses/{courseId}/modules/{moduleId}/topics:
+    post:
+      tags: [Topics]
+      security:
+        - bearerAuth: []
+      summary: Add topic
+
+  /courses/{courseId}/modules/{moduleId}/topics/{topicId}:
+    put:
+      tags: [Topics]
+      security:
+        - bearerAuth: []
+      summary: Update topic
+    delete:
+      tags: [Topics]
+      security:
+        - bearerAuth: []
+      summary: Delete topic
+
+  /courses/{courseId}/modules/{moduleId}/topics/{topicId}/subtopics:
+    post:
+      tags: [Subtopics]
+      security:
+        - bearerAuth: []
+      summary: Add subtopic
+
+  /courses/{courseId}/modules/{moduleId}/topics/{topicId}/subtopics/{subtopicId}:
+    put:
+      tags: [Subtopics]
+      security:
+        - bearerAuth: []
+      summary: Update subtopic
+    delete:
+      tags: [Subtopics]
+      security:
+        - bearerAuth: []
+      summary: Delete subtopic
+
+
+  ###########################################
+  ## BLOGS
+  ###########################################
+
+  /blogs:
+    get:
+      tags: [Blogs]
+      summary: Get all blogs
+    post:
+      tags: [Blogs]
+      security:
+        - bearerAuth: []
+      summary: Create blog
+
+  /blogs/{id}:
+    get:
+      tags: [Blogs]
+      summary: Get blog by ID
+    put:
+      tags: [Blogs]
+      security:
+        - bearerAuth: []
+      summary: Update blog
+    delete:
+      tags: [Blogs]
+      security:
+        - bearerAuth: []
+      summary: Delete blog
+
+  /blogs/{id}/like:
+    post:
+      tags: [Blogs]
+      security:
+        - bearerAuth: []
+      summary: Like/unlike blog
+
+  /blogs/{id}/comments:
+    post:
+      tags: [Blogs]
+      security:
+        - bearerAuth: []
+      summary: Add comment
+
+  /blogs/{id}/comments/{commentId}:
+    delete:
+      tags: [Blogs]
+      security:
+        - bearerAuth: []
+      summary: Delete comment
+
+
+  ###########################################
+  ## ADMIN APIS
+  ###########################################
+  /admin/users:
+    get:
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      summary: Get all users
+
+  /admin/users/{id}:
+    get:
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      summary: Get user details
+    delete:
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      summary: Delete user
+
+  /admin/users/{id}/role:
+    put:
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      summary: Update user role
+
+  /admin/courses/{courseId}/publish:
+    put:
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      summary: Publish course
+
+  /admin/courses/{courseId}/unpublish:
+    put:
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      summary: Unpublish course
+
+  /admin/blogs/{blogId}/publish:
+    put:
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      summary: Publish blog
+
+  /admin/blogs/{blogId}/unpublish:
+    put:
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      summary: Unpublish blog
+
+  /admin/dashboard:
+    get:
+      tags: [Admin]
+      security:
+        - bearerAuth: []
+      summary: Admin dashboard statistics

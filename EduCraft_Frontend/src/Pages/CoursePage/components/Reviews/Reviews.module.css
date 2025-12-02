@@ -1,0 +1,92 @@
+.wrapper {
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Arrows */
+.arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Keep arrows visible on tablet */
+.left { margin-right: 12px; }
+.right { margin-left: 12px; }
+
+/* Outer wrapper */
+.cardsOuter {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Horizontal scroll area */
+.cardsContainer {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+
+  scrollbar-width: none;
+}
+
+.cardsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive card widths */
+.card {
+  background: #fff;
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  flex-shrink: 0;
+
+  /* Desktop: 3 per view */
+  min-width: calc((100% / 3) - 20px);
+  max-width: calc((100% / 3) - 20px);
+}
+
+.text {
+  font-size: 15px;
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.author span {
+  color: #666;
+}
+
+/* Tablet: 2 cards */
+@media (max-width: 900px) {
+  .card {
+    min-width: calc((100% / 2) - 20px);
+    max-width: calc((100% / 2) - 20px);
+  }
+}
+
+/* Mobile: 1 full card */
+@media (max-width: 600px) {
+  .arrow {
+    display: none;
+  }
+
+  .card {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}

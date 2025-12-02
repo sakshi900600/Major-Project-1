@@ -1,4 +1,4 @@
 // ...existing code...
 # Environment file - do not commit to repository
 .env
-node_modules/
+node_modules

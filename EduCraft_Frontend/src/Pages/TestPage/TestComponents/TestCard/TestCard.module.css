@@ -1,0 +1,151 @@
+.testCard {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  transition: all 0.3s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.testCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.testName {
+  font-size: 1.4rem;
+  color: #1a202c;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+}
+
+.difficulty {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.beginner {
+  background: #d4edda;
+  color: #155724;
+}
+
+.intermediate {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.advanced {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.description {
+  color: #4a5568;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.testInfo {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #718096;
+  font-size: 0.95rem;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.startButton {
+  width: 100%;
+  background: linear-gradient(135deg, #2d7a6e 0%, #1e5a4e 100%);
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.startButton:hover {
+  background: linear-gradient(135deg, #1e5a4e 0%, #14433a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 122, 110, 0.3);
+}
+
+.arrowIcon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5;
+}
+
+@media (max-width: 768px) {
+  .testCard {
+    padding: 20px;
+  }
+  
+  .testName {
+    font-size: 1.2rem;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .difficulty {
+    align-self: flex-start;
+  }
+  
+  .description {
+    font-size: 0.95rem;
+  }
+  
+  .testInfo {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testName {
+    font-size: 1.1rem;
+  }
+  
+  .description {
+    font-size: 0.9rem;
+  }
+  
+  .startButton {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}

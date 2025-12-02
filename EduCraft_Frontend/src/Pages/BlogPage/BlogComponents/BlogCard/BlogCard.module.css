@@ -1,0 +1,227 @@
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.imageContainer {
+  position: relative;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  background-color: #f3f4f6;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.category {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.date {
+  color: #9ca3af;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 40px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.authorImage {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.authorImagePlaceholder {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.authorInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.authorName {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.authorRole {
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1024px) {
+  .content {
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .meta {
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 15px;
+    min-height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .category {
+    font-size: 11px;
+  }
+  
+  .date {
+    font-size: 11px;
+  }
+  
+  .authorName {
+    font-size: 11px;
+  }
+  
+  .authorRole {
+    font-size: 10px;
+  }
+  
+  .authorImage {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .authorImagePlaceholder {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 14px;
+  }
+  
+  .title {
+    font-size: 14px;
+    min-height: auto;
+    margin-bottom: 8px;
+  }
+  
+  .meta {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  
+  .category {
+    font-size: 11px;
+  }
+  
+  .date {
+    font-size: 10px;
+  }
+  
+  .author {
+    gap: 8px;
+    padding-top: 10px;
+  }
+  
+  .authorImage {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .authorImagePlaceholder {
+    width: 26px;
+    height: 26px;
+  }
+  
+  .authorName {
+    font-size: 10px;
+  }
+  
+  .authorRole {
+    font-size: 9px;
+  }
+}

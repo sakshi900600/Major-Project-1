@@ -1,0 +1,24 @@
+.CoursesPage__container {
+  width: 100%;
+  /* padding: 1rem 1rem; */
+  box-sizing: border-box;
+  /* background: #fafafa; */
+}
+
+.CoursesPage__contentWrapper {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.CoursesPage__rightSection {
+  width: 100%;
+}
+
+/* ✅ Responsiveness */
+@media (max-width: 900px) {
+  .CoursesPage__contentWrapper {
+    grid-template-columns: 1fr;
+  }
+}

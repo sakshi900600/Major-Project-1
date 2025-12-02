@@ -1,0 +1,147 @@
+.questionCard {
+  width: 100%;
+}
+
+.questionHeader {
+  margin-bottom: 20px;
+}
+
+.questionNumber {
+  display: inline-block;
+  background: linear-gradient(135deg, #2d7a6e 0%, #1e5a4e 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.questionText {
+  font-size: 1.3rem;
+  color: #1a202c;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  position: relative;
+}
+
+.option:hover {
+  border-color: #2d7a6e;
+  background: #f0fdf4;
+  transform: translateX(5px);
+}
+
+.option.selected {
+  border-color: #2d7a6e;
+  background: linear-gradient(135deg, #d4f4dd 0%, #a7f3d0 100%);
+  box-shadow: 0 4px 12px rgba(45, 122, 110, 0.2);
+}
+
+.optionLetter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  background: linear-gradient(135deg, #2d7a6e 0%, #1e5a4e 100%);
+  color: white;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.option.selected .optionLetter {
+  background: linear-gradient(135deg, #155724 0%, #0f4419 100%);
+}
+
+.optionText {
+  flex: 1;
+  color: #2d3748;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.checkIcon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 3;
+  color: #155724;
+}
+
+@media (max-width: 768px) {
+  .questionText {
+    font-size: 1.1rem;
+  }
+  
+  .option {
+    padding: 15px;
+  }
+  
+  .optionLetter {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 0.9rem;
+  }
+  
+  .optionText {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .questionNumber {
+    padding: 6px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .questionText {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .optionsContainer {
+    gap: 12px;
+  }
+  
+  .option {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .optionLetter {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    font-size: 0.85rem;
+  }
+  
+  .optionText {
+    font-size: 0.9rem;
+  }
+  
+  .checkIcon {
+    width: 20px;
+    height: 20px;
+  }
+}

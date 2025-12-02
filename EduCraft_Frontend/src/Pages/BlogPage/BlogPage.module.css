@@ -1,0 +1,89 @@
+.blogPage {
+  min-height: 100vh;
+  background-color: #fafafa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  padding: 0 80px;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.noResults {
+  text-align: center;
+  padding: 80px 20px;
+  color: #6b7280;
+}
+
+.noResults h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.noResults p {
+  font-size: 16px;
+}
+
+@media (max-width: 1200px) {
+  .blogPage {
+    padding: 0 80px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .blogPage {
+    padding: 0 50px;
+  }
+}
+
+@media (max-width: 992px) {
+  .blogPage {
+    padding: 0 24px;
+  }
+  
+  .noResults {
+    padding: 60px 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blogPage {
+    padding: 0 24px;
+  }
+  
+  .noResults {
+    padding: 50px 16px;
+  }
+  
+  .noResults h3 {
+    font-size: 20px;
+  }
+  
+  .noResults p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .blogPage {
+    padding: 0 16px;
+  }
+  
+  .noResults {
+    padding: 40px 12px;
+  }
+  
+  .noResults h3 {
+    font-size: 18px;
+  }
+  
+  .noResults p {
+    font-size: 13px;
+  }
+}

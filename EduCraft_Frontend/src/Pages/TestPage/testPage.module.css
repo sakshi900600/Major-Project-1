@@ -1,0 +1,11 @@
+.testPageContainer {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .testPageContainer {
+    padding: 10px;
+  }
+}

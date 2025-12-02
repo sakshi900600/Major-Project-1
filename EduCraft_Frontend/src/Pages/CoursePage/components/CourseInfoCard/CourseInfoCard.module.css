@@ -1,0 +1,100 @@
+.card {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  width: 320px;
+  position: sticky;
+  top: 1rem;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: #1f2937;
+}
+
+.details li {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  gap: 8px;
+}
+
+.icon {
+  color: #374151;
+  font-size: 0.95rem;
+}
+
+.org {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.orgIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.enrollBtn {
+  background-color: #f87171;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.enrollBtn:hover {
+  background-color: #ef4444;
+}
+
+/* ----- Responsive adjustments ----- */
+@media (max-width: 1024px) {
+  .card {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 1.2rem;
+  }
+
+  .title {
+    font-size: 1.05rem;
+  }
+
+  .enrollBtn {
+    font-size: 0.95rem;
+  }
+}

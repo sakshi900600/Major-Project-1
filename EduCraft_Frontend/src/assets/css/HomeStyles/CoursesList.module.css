@@ -1,0 +1,141 @@
+/* CoursesList.module.css */
+
+.coursesSection {
+  width: 100%;
+  padding: 70px 0;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.subtitle {
+  display: inline-block;
+  color: #ff6b35;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: 700;
+  color: #2F281E;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+/* Tablet Styles (max-width: 991px) */
+@media screen and (max-width: 991px) {
+  .coursesSection {
+    padding: 80px 0;
+  }
+
+  .container {
+    padding: 0 40px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Mobile Styles (max-width: 767px) */
+@media screen and (max-width: 767px) {
+  .coursesSection {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header {
+    margin-bottom: 40px;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+/* Small Mobile Styles (max-width: 575px) */
+@media screen and (max-width: 575px) {
+  .coursesSection {
+    padding: 40px 0;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 500px;
+  }
+}
+
+/* Extra Small Devices (max-width: 420px) */
+@media screen and (max-width: 420px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .header {
+    margin-bottom: 30px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 380px;
+  }
+}

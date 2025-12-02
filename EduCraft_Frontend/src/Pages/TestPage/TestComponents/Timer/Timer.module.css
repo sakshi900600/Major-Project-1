@@ -1,0 +1,85 @@
+.timerContainer {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.timerSvg {
+  transform: rotate(-90deg);
+}
+
+.timerBackground {
+  fill: none;
+  stroke: #e2e8f0;
+  stroke-width: 6;
+}
+
+.timerProgress {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+}
+
+.timerText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.time {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+.label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+  .timerContainer {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .timerSvg {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .time {
+    font-size: 1rem;
+  }
+  
+  .label {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timerContainer {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .timerSvg {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .time {
+    font-size: 0.9rem;
+  }
+  
+  .label {
+    font-size: 0.55rem;
+  }
+}

@@ -5,3 +5,133 @@
   /* padding: 2rem 1rem; */
   background: #fafafa;
 }
+
+
+/* =========================
+   PAGE LOADER
+========================= */
+
+.pageLoader {
+  min-height: calc(100vh - 120px); 
+  /* 120px ≈ navbar + footer height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fafafa;
+}
+
+/* Spinner */
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #3925eb;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.loadingText {
+  margin-top: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .spinner {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+
+
+
+/* =========================
+   ERROR / EMPTY STATE
+========================= */
+
+.errorWrapper {
+  min-height: calc(100vh - 120px); /* navbar + footer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: #fafafa;
+}
+
+.errorCard {
+  background: #ffffff;
+  max-width: 420px;
+  width: 100%;
+  padding: 2.2rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.errorTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.errorMessage {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.5;
+  margin-bottom: 1.6rem;
+}
+
+/* Button */
+.backButton {
+  background: linear-gradient(to right, #434145, #957ae7);;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.backButton:hover {
+  background: linear-gradient(to right, #2c2c2e, #7a5ee7);
+  transform: translateY(-1px);
+}
+
+.backButton:active {
+  transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 480px) {
+  .errorCard {
+    padding: 1.8rem 1.4rem;
+  }
+
+  .errorTitle {
+    font-size: 1.2rem;
+  }
+
+  .errorMessage {
+    font-size: 0.9rem;
+  }
+
+  .backButton {
+    width: 100%;
+  }
+}

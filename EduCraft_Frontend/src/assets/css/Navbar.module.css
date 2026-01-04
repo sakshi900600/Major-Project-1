@@ -11,7 +11,7 @@
 /* Scrolled State - Transparent with Blur */
 .navbar.scrolled {
   background-color: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
@@ -21,8 +21,8 @@
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  max-width: 1440px; /* Optional: for large monitors */
-  padding: 0 80px; /* Desktop padding */
+  max-width: 1440px;
+  padding: 0 80px;
   margin: 0 auto;
 }
 
@@ -35,6 +35,10 @@
   cursor: pointer;
   flex-shrink: 0; 
   list-style: none;
+}
+
+.navLogo a {
+  text-decoration: none;
 }
 
 .logoIcon {
@@ -62,6 +66,10 @@
   letter-spacing: -0.3px;
   white-space: nowrap;
   list-style: none;
+  text-decoration: none !important;
+}
+
+.logoText:hover {
   text-decoration: none;
 }
 
@@ -167,7 +175,7 @@
   top: -100vh; 
   left: 0;
   width: 100%;
-  padding: 20px 0; /* Only vertical padding here */
+  padding: 20px 0;
   background-color: #ffffff;
   transition: top 0.4s ease-in-out;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -180,7 +188,6 @@
   display: flex;
   top: 80px; 
 }
-
 
 .mobileMenu .navItem {
   margin: 10px 0;
@@ -214,8 +221,209 @@
   box-sizing: border-box; 
 }
 
+/* Profile Wrapper */
+.profileWrapper {
+  position: relative;
+}
 
+/* Avatar */
+.profileAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4F46E5, #6366F1);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
 
+.profileAvatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+/* Dropdown Container */
+.profileDropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: 1100;
+  animation: dropdownFade 0.2s ease-out;
+  overflow: hidden;
+}
+
+/* Dropdown Arrow */
+.profileDropdown::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 14px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  transform: rotate(45deg);
+  box-shadow: -3px -3px 6px rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Dropdown Items */
+.dropdownItem {
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1F2937;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.dropdownItem:hover {
+  background: #F3F4F6;
+  color: #4F46E5;
+}
+
+/* First and Last Item Rounding */
+.dropdownItem:first-child {
+  border-radius: 12px 12px 0 0;
+}
+
+.dropdownItem:last-child {
+  border-radius: 0 0 12px 12px;
+}
+
+/* Divider for Logout */
+.dropdownItem:last-child {
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid #E5E7EB;
+  color: #DC2626;
+}
+
+.dropdownItem:last-child:hover {
+  background: #FEE2E2;
+  color: #B91C1C;
+}
+
+/* Dropdown Icon Styling */
+.dropdownItem svg,
+.dropdownItem i {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+}
+
+.dropdownItem:hover svg,
+.dropdownItem:hover i {
+  opacity: 1;
+}
+
+/* Mobile Profile Menu Styles */
+.mobileProfileMenu {
+  margin-top: 20px;
+  width: 100%;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.mobileUserInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.mobileAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.mobileUserText {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.mobileMenuItem {
+  display: block;
+  width: 100%;
+  padding: 14px 20px;
+  margin: 6px 0;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  color: #1F2937;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.mobileMenuItem:hover {
+  background: #F3F4F6;
+  border-color: #4F46E5;
+  color: #4F46E5;
+}
+
+.mobileMenuItem:last-child {
+  color: #DC2626;
+  background: #FEF2F2;
+  border-color: #FEE2E2;
+}
+
+.mobileMenuItem:last-child:hover {
+  background: #FEE2E2;
+  border-color: #DC2626;
+}
+
+/* Animation */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 
 /* Tablet and Mobile Devices (992px and below) */
 @media screen and (max-width: 992px) {
@@ -225,6 +433,8 @@
 
   .mobileNav {
     display: flex;
+    align-items: center;
+    gap: 16px;
   }
 
   .navContainer {
@@ -240,80 +450,119 @@
 @media screen and (max-width: 576px) {
   .navContainer {
     height: 70px;
+    padding: 0 20px;
   }
 
-  .navContainer, .mobileMenu.active {
+  .mobileMenu.active {
     top: 70px;
   }
+
+  .logoText {
+    font-size: 26px;
+  }
+
+  .logoIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .iconCircle {
+    width: 12px;
+    height: 12px;
+  }
+
+  /* Profile dropdown centered on small mobile */
+  .profileDropdown {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 240px;
+    max-width: calc(100vw - 40px);
+  }
+
+  .profileDropdown::before {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .profileAvatar {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+
+  .dropdownItem {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+
+  .dropdownItem:hover {
+    padding-left: 20px;
+  }
+
+  .mobileAvatar {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  .mobileUserText {
+    font-size: 16px;
+  }
 }
 
+/* Extra Small Devices (400px and below) */
+@media screen and (max-width: 400px) {
+  .navContainer {
+    padding: 0 16px;
+  }
 
+  .logoText {
+    font-size: 24px;
+  }
 
-/* Profile Icon Wrapper */
-.profileWrapper {
-  position: relative;
+  .profileDropdown {
+    min-width: 200px;
+  }
+
+  .dropdownItem {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .mobileProfileMenu {
+    padding: 0 16px;
+  }
 }
 
-/* Round Profile Avatar */
-.profileAvatar {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #4F46E5;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s ease;
+/* Prevent body scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
 }
 
-.profileAvatar:hover {
-  opacity: 0.85;
+/* Add smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Dropdown */
-.profileDropdown {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  width: 170px;
-  background: white;
-  border-radius: 8px;
-  padding: 8px 0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  z-index: 1000;
+/* Focus states for accessibility */
+.navLink:focus,
+.btnSignIn:focus,
+.btnSignUp:focus,
+.profileAvatar:focus,
+.dropdownItem:focus,
+.mobileMenuItem:focus {
+  outline: 2px solid #4F46E5;
+  outline-offset: 2px;
 }
 
-.dropdownItem {
-  padding: 10px 16px;
-  font-size: 14px;
-  color: #1F2937;
-  text-decoration: none;
-  display: block;
-  cursor: pointer;
-}
-
-.dropdownItem:hover {
-  background: #f4f4f4;
-}
-
-/* Mobile profile menu */
-.mobileProfileMenu {
-  width: 100%;
-  padding: 10px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.mobileProfileMenu button {
-  text-align: left;
-  padding: 10px 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 15px;
+/* Remove focus outline on mouse click, keep for keyboard navigation */
+.navLink:focus:not(:focus-visible),
+.btnSignIn:focus:not(:focus-visible),
+.btnSignUp:focus:not(:focus-visible),
+.profileAvatar:focus:not(:focus-visible),
+.dropdownItem:focus:not(:focus-visible),
+.mobileMenuItem:focus:not(:focus-visible) {
+  outline: none;
 }

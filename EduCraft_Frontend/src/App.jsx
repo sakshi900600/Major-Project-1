@@ -13,6 +13,7 @@ import BlogPage from "./Pages/BlogPage/BlogPage";
 import BlogDetail from "./Pages/BlogPage/BlogComponents/BlogDetail/BlogDetail";
 import TestPage from "./Pages/TestPage/testPage";
 import SubmoduleDetail from "./Pages/CoursePage/components/SubmoduleDetail/SubmoduleDetail";
+import Profile from "./Pages/ProfilePage/Profile";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/blogs" element={<BlogPage />} />
         <Route path="/blogs/:slug" element={<BlogDetail />} />
         <Route path="/test" element={<TestPage />} />
+        <Route path="/profile" element={<Profile />} />
 
         <Route path="/course/:slug/submodule/:submoduleId" element={<SubmoduleDetail />} />
       </Routes>

@@ -12,7 +12,7 @@ import FAQSection from "./components/FAQSection/FAQSection";
 import { getCourseBySlug } from "../../api/coursesAPI";
 
 const CoursePage = () => {
-  const { slug } = useParams(); // now expecting slug instead of id
+  const { slug } = useParams(); 
   const navigate = useNavigate();
 
   const [course, setCourse] = useState(null);
@@ -51,17 +51,51 @@ const CoursePage = () => {
     else setError("No course slug provided");
   }, [slug]);
 
-  if (loading) return <div className={styles.loading}>Loading course...</div>;
+  if (loading)
+  return (
+    <div className={styles.pageLoader}>
+      <div className={styles.spinner}></div>
+      <p className={styles.loadingText}>Loading course...</p>
+    </div>
+  );
 
+
+  
   if (error)
-    return (
-      <div className={styles.error}>
-        <p>{error}</p>
-        <button onClick={() => navigate("/courses")}>Back to courses</button>
+  return (
+    <div className={styles.errorWrapper}>
+      <div className={styles.errorCard}>
+        <h2 className={styles.errorTitle}>Oops! Something went wrong</h2>
+        <p className={styles.errorMessage}>{error}</p>
+        <button
+          className={styles.backButton}
+          onClick={() => navigate("/courses")}
+        >
+          Back to courses
+        </button>
       </div>
-    );
+    </div>
+  );
 
-  if (!course) return <div className={styles.empty}>Course not found</div>;
+
+  if (!course)
+  return (
+    <div className={styles.errorWrapper}>
+      <div className={styles.errorCard}>
+        <h2 className={styles.errorTitle}>Course not found</h2>
+        <p className={styles.errorMessage}>
+          The course you’re looking for doesn’t exist or may have been removed.
+        </p>
+        <button
+          className={styles.backButton}
+          onClick={() => navigate("/courses")}
+        >
+          Browse courses
+        </button>
+      </div>
+    </div>
+  );
+
 
   return (
     <div className={styles.container}>

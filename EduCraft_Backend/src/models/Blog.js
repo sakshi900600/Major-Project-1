@@ -2,19 +2,28 @@ const mongoose = require("mongoose");
 const slugify = require("slugify");
 
 /* =======================================================
-   CONTENT SECTIONS
+   CONTENT BLOCKS (INDUSTRY STYLE)
 ======================================================= */
 const ContentSectionSchema = new mongoose.Schema({
   type: {
     type: String,
-    enum: ["heading", "subheading", "text", "image", "code", "quote", "video"],
+    enum: [
+      "section",   // text section with optional heading
+      "image",
+      "video",
+      "code",
+      "quote",
+      "table"
+    ],
     required: true
   },
-  value: {
-    type: String,
+
+  data: {
+    type: mongoose.Schema.Types.Mixed,
     required: true
   }
 });
+
 
 /* =======================================================
    COMMENTS
@@ -80,11 +89,27 @@ BlogSchema.pre("save", function (next) {
   }
 
   // reading time calculation
-  if (this.isModified("content")) {
-    const fullText = this.content.map(c => c.value).join(" ");
-    const words = fullText.split(/\s+/).length;
-    this.readingTime = Math.ceil(words / 200); // 200 WPM standard
-  }
+if (this.isModified("content")) {
+  let fullText = "";
+
+  this.content.forEach(block => {
+    if (block.type === "section" && block.data?.paragraphs) {
+      fullText += block.data.paragraphs.join(" ");
+    }
+
+    if (block.type === "quote" && block.data?.text) {
+      fullText += block.data.text;
+    }
+
+    if (block.type === "code" && block.data?.code) {
+      fullText += block.data.code;
+    }
+  });
+
+  const words = fullText.split(/\s+/).length;
+  this.readingTime = Math.ceil(words / 200);
+}
+
 
   next();
 });

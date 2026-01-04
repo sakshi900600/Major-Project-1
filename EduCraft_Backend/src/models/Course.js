@@ -1,25 +1,63 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-/* ------------------ Content Schema ------------------ */
-const ContentSchema = new mongoose.Schema({
-  type: { type: String, enum: ["text", "video", "image", "link"], default: "text" },
-  value: { type: String, required: true }
+/* ======================================================
+   CONTENT BLOCK SCHEMA
+====================================================== */
+const ContentBlockSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: [
+      "heading",
+      "paragraph",
+      "list",
+      "table",
+      "image",
+      "video",
+      "quote",
+      "code",
+      "link"
+    ],
+    required: true
+  },
+
+  text: String,
+  items: [String],
+
+  table: {
+    headers: [String],
+    rows: [[String]]
+  },
+
+  src: String,
+  caption: String,
+
+  language: String,
+  code: String,
+
+  url: String
 });
 
-/* ------------------ Subtopic Schema ------------------ */
+/* ======================================================
+   SUBTOPIC SCHEMA
+====================================================== */
 const SubtopicSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  content: ContentSchema
+  order: Number,
+  contents: [ContentBlockSchema]
 });
 
-/* ------------------ Topic Schema ------------------ */
+/* ======================================================
+   TOPIC SCHEMA
+====================================================== */
 const TopicSchema = new mongoose.Schema({
   title: { type: String, required: true },
   order: Number,
   subtopics: [SubtopicSchema]
 });
 
-/* ------------------ Module Schema ------------------ */
+/* ======================================================
+   MODULE SCHEMA
+====================================================== */
 const ModuleSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
@@ -27,7 +65,9 @@ const ModuleSchema = new mongoose.Schema({
   topics: [TopicSchema]
 });
 
-/* ------------------ Instructor Schema ------------------ */
+/* ======================================================
+   INSTRUCTOR SCHEMA
+====================================================== */
 const InstructorSchema = new mongoose.Schema({
   name: String,
   designation: String,
@@ -41,26 +81,35 @@ const InstructorSchema = new mongoose.Schema({
   }
 });
 
-/* ------------------ FAQ Schema ------------------ */
+/* ======================================================
+   FAQ SCHEMA
+====================================================== */
 const FaqSchema = new mongoose.Schema({
   question: String,
   answer: String
 });
 
-/* ------------------ Course Schema ------------------ */
+/* ======================================================
+   COURSE SCHEMA
+====================================================== */
 const CourseSchema = new mongoose.Schema({
   slug: { type: String, required: true, unique: true },
   title: { type: String, required: true },
+  short_description: String,
   description: String,
-  level: String,
+
+  level: {
+    type: String,
+    enum: ["Beginner", "Intermediate", "Advanced"]
+  },
+
   category: String,
   tags: [String],
   thumbnail: String,
   published: { type: Boolean, default: false },
 
   authors: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-
-  instructors: [InstructorSchema], //  ⭐ NEW
+  instructors: [InstructorSchema],
 
   rating: { type: Number, default: 0 },
   duration: { type: String, default: "0h" },
@@ -72,15 +121,21 @@ const CourseSchema = new mongoose.Schema({
     mockInterviews: { type: Number, default: 0 }
   },
 
-  features: [String],  
-  why_join: [String],  
-  skills: [String],     
-  faq: [FaqSchema],     
+  features: [String],
+  why_join: [String],
+  skills: [String],
+  faq: [FaqSchema],
 
   modules: [ModuleSchema],
 
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }
+});
+
+/* Auto-update updated_at */
+CourseSchema.pre("save", function (next) {
+  this.updated_at = Date.now();
+  next();
 });
 
 module.exports = mongoose.model("Course", CourseSchema);

@@ -1,8 +1,9 @@
 /* HeroSection.module.css */
 
 .heroContainer {
-  min-height: 100vh;
-  background: linear-gradient(to bottom right, #faf5ff, #eff6ff, #fce7f3);
+  min-height: 90vh;
+  /* background: linear-gradient(to bottom right, #faf5ff, #eff6ff, #fce7f3); */
+  background-color: #eef;
   padding: 2rem 1rem;
 }
 
@@ -27,17 +28,11 @@
 /* Left Content Styles */
 .leftContent {
   width: 100%;
-  padding: 1rem 0 2.5rem;
+  padding: 3rem 0 3.5rem;
+  padding-right: 2rem;
 }
 
-.breadcrumb {
-  display: none;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  color: #4b5563;
-  margin-bottom: 1.5rem;
-}
+
 
 @media (min-width: 768px) {
   .breadcrumb {
@@ -58,7 +53,8 @@
 }
 
 .popularBadge {
-  background: linear-gradient(to right, #9333ea, #db2777);
+  /* background: linear-gradient(to right, #9333ea, #db2777); */
+  background: linear-gradient(to right, #434145, #957ae7);
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
@@ -86,12 +82,19 @@
 }
 
 .separator {
-  color: #d1d5db;
+  color: #646566;
   font-size: 0.75rem;
 }
 
+.clock{
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
 .metaInfo {
-  color: #4b5563;
+  color: #393838;
   font-size: 0.875rem;
 }
 
@@ -132,9 +135,9 @@
   display: none;
   background: linear-gradient(to right, #9333ea, #2563eb);
   color: white;
-  padding: 0.625rem 1.5rem;
+  padding: 0.925rem 1.5rem;
   border-radius: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   border: none;
@@ -182,9 +185,9 @@
 .sidebar {
   background: #fff;
   border-radius: 0.75rem;
-  box-shadow: 9px 9px 5px rgba(142, 168, 202, 0.546); /* right, bottom */
-  padding: 0.5rem;
-  border: 1px solid #f3f4f6;
+  box-shadow: 9px 9px 5px rgba(37, 100, 235, 0.243); /* right, bottom */
+  padding: 2.5rem;
+  border: 1px solid #6607e1;
   cursor: pointer;
 }
 
@@ -224,31 +227,13 @@
   padding: 0.625rem;
   border-radius: 0.5rem;
   transition: box-shadow 0.3s ease;
+  background: rgb(226, 226, 241);
 }
 
 .statCard:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  outline: 1px solid #0a42ba;
 }
 
-.statCard1 {
-  background: linear-gradient(to right, #dbeafe, #faf5ff);
-}
-
-.statCard2 {
-  background: linear-gradient(to right, #faf5ff, #fce7f3);
-}
-
-.statCard3 {
-  background: linear-gradient(to right, #fce7f3, #ffedd5);
-}
-
-.statCard4 {
-  background: linear-gradient(to right, #ffedd5, #fef3c7);
-}
-
-.statCard5 {
-  background: linear-gradient(to right, #d1fae5, #ccfbf1);
-}
 
 .iconWrapper {
   background: white;
@@ -260,13 +245,14 @@
   justify-content: center;
 }
 
-.icon {
-  width: 1rem;
-  height: 1rem;
+.statCard .icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: #462865;
 }
 
 .statCard1 .icon {
-  color: #2563eb;
+  background-color: #2563eb;
 }
 
 .statCard2 .icon {
@@ -366,3 +352,9 @@
 }
 
 
+.errorText {
+  margin-top: 12px;
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 500;
+}

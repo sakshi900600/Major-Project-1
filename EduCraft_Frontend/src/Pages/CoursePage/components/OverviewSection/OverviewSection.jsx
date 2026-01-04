@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./OverviewSection.module.css";
+import { CircleCheckBig } from "lucide-react";
 
 const OverviewSection = ({ course }) => {
   if (!course) return null;
@@ -24,9 +25,12 @@ const OverviewSection = ({ course }) => {
           <ul className={styles.list}>
             {features.length > 0
               ? features.map((item, idx) => (
-                  <li key={idx}>✔ {item}</li>
+                  <li className={styles.listItem} key={idx}>
+                    <CircleCheckBig className={styles.icon} />
+                    <span className={styles.itemText}>{item}</span>
+                  </li>
                 ))
-              : <li>No details available.</li>}
+              : <li className={styles.listItem}>No details available.</li>}
           </ul>
         </div>
 
@@ -46,9 +50,12 @@ const OverviewSection = ({ course }) => {
           <ul className={styles.list}>
             {why_join.length > 0
               ? why_join.map((point, idx) => (
-                  <li key={idx}>✔ {point}</li>
+                  <li className={styles.listItem} key={idx}>
+                    <CircleCheckBig className={styles.icon} />
+                    <span className={styles.itemText}>{point}</span>
+                  </li>
                 ))
-              : <li>No details available.</li>}
+              : <li className={styles.listItem}>No details available.</li>}
           </ul>
         </div>
 

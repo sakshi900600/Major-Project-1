@@ -22,11 +22,9 @@
 
 /* Card Style */
 .card {
-  background: #ffffff;
+  background: rgb(240, 240, 246);
   padding: 22px;
   border-radius: 16px;
-  /* border: 1px solid #e4e4e4; */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .cardTitle {
@@ -43,13 +41,33 @@
 
 .list {
   margin-top: 8px;
-  padding-left: 15px;
+  padding-left: 0;
+  list-style: none;
 }
 
 .list li {
-  margin-bottom: 6px;
+  margin: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px; /* increased gap between list lines */
   font-size: 15px;
   color: #444;
+}
+
+.icon {
+  color: #101bb9; 
+  min-width: 20px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.itemText {
+  flex: 1 1 auto;
+  line-height: 1.6; /* slightly taller for readability */
 }
 
 /* Skills Section */
@@ -63,8 +81,8 @@
 .skill {
   padding: 8px 14px;
   border-radius: 12px;
-  background: #f5f5f5;
-  border: 1px solid #ddd;
+  background: #b2c6f09e;
+  border: 1px solid #1310b9;
   font-size: 14px;
   white-space: nowrap;
 }
@@ -111,3 +129,7 @@
     padding: 7px 12px;
   }
 }
+
+
+
+/* legacy helpers removed; use .listItem, .icon, .itemText */

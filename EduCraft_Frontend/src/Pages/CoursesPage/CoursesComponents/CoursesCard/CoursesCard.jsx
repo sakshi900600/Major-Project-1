@@ -9,7 +9,7 @@ const CoursesCard = ({ course }) => {
   const {
     slug,
     title,
-    description,
+    short_description,
     instructor,
     author,
     logo,
@@ -44,7 +44,7 @@ const CoursesCard = ({ course }) => {
           </div>
 
           <h3 className={styles.title}>{title}</h3>
-          <p className={styles.description}>{description}</p>
+          <p className={styles.description}>{short_description}</p>
 
           <div className={styles.metaRow}>
             <div className={styles.rating}>

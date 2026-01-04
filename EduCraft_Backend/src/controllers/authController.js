@@ -17,9 +17,9 @@ const register = async (req, res, next) => {
     if (existing) return res.status(409).json({ message: 'Email already registered' });
 
     const salt = await bcrypt.genSalt(10);
-    const password_hash = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    const user = await User.create({ name, email, password_hash, role: 'learner' });
+    const user = await User.create({ name, email, password: hashedPassword, role: 'learner' });
 
     res.status(201).json({
       message: 'registered',
@@ -40,10 +40,11 @@ const login = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user || !user.password_hash)
+
+    if (!user || !user.password)
       return res.status(401).json({ message: 'Invalid credentials' });
 
-    const valid = await bcrypt.compare(password, user.password_hash);
+    const valid = await bcrypt.compare(password, user.password);
     if (!valid) return res.status(401).json({ message: 'Invalid credentials' });
 
     const payload = {

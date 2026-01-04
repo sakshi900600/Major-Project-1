@@ -13,7 +13,7 @@ const CourseCard = ({
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
-        <img src={image} alt={title} className={styles.image} />
+        <img loading='lazy' src={image} alt={title} className={styles.image} />
         <span className={styles.badge}>{duration}</span>
       </div>
       

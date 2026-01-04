@@ -1,7 +1,7 @@
 // controllers/courseController.js
 const Course = require("../models/Course");
 const User = require("../models/User");
-const { slugifyText, generateUniqueSlug } = require("../utils/slugify");
+const { slugify, generateUniqueSlug } = require("../utils/slugify");
 
 /* helper to resolve author names -> ids (keeps original behavior) */
 async function resolveAuthors(authorsInput) {
@@ -55,7 +55,7 @@ const createCourse = async (req, res, next) => {
     const data = req.body;
 
     // ensure basic slug and uniqueness across courses
-    let baseSlug = slugifyText(data.title || "course");
+    let baseSlug = slugify(data.title || "course");
     // if collision, append -1, -2 ...
     let slug = baseSlug;
     let counter = 1;
@@ -87,7 +87,7 @@ const updateCourse = async (req, res, next) => {
     const data = req.body;
 
     if (data.title) {
-      const baseSlug = slugifyText(data.title);
+      const baseSlug = slugify(data.title);
       let slug = baseSlug;
       let counter = 1;
       // ensure uniqueness across courses excluding this one
@@ -128,6 +128,36 @@ const deleteCourse = async (req, res, next) => {
   }
 };
 
+
+/**
+ * Check if logged-in user is enrolled in course
+ * GET /api/course/:id/enrollment-status
+ */
+const checkEnrollmentStatus = async (req, res, next) => {
+  try {
+    const userId = req.user.sub;
+    const courseId = req.params.id;
+
+    const user = await User.findById(userId);
+
+    const enrollment = user.enrollments.find(
+      e => e.course_id.toString() === courseId
+    );
+
+    res.json({
+      enrolled: !!enrollment,
+      status: enrollment?.status || null,
+      progress: enrollment?.progress || 0
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
+
+
+
 module.exports = {
   getCourses,
   getCourse,
@@ -135,4 +165,5 @@ module.exports = {
   createCourse,
   updateCourse,
   deleteCourse,
+  checkEnrollmentStatus
 };

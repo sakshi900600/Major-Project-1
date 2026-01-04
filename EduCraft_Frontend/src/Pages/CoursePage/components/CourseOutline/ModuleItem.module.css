@@ -1,9 +1,10 @@
 .moduleCard {
-  background-color: #f9fafb;
+  background-color: rgba(238, 238, 255, 0.554);
   border-radius: 10px;
-  border: 1px solid #eeeeee;
+  border: 1px solid #6765f3;
   overflow: hidden;
   transition: box-shadow 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .moduleCard:hover {
@@ -123,6 +124,12 @@
   color: #1d4ed8;
   text-decoration: underline;
 }
+
+.moduleCompleted {
+  background-color: #ecfdf5;
+  border-color: #10b981;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './WhatYouWillLearn.module.css';
+import { CircleCheckBig } from 'lucide-react';
 
 const WhatYouWillLearn = ({ heading = "What you'll learn", items = [] }) => {
   return (
@@ -8,7 +9,7 @@ const WhatYouWillLearn = ({ heading = "What you'll learn", items = [] }) => {
       <ul className={styles.list}>
         {items.map((item, idx) => (
           <li key={idx} className={styles.listItem}>
-            <span className={styles.check}>✓</span>
+            <span><CircleCheckBig className={styles.check}/></span>
             <span className={styles.itemText}>{item}</span>
           </li>
         ))}
